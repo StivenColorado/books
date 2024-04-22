@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'name' => 'stiven',
             'last_name' => 'colorado',
             'email' => 'stivenchoo@gmail.com',
-            'password' => bcrypt(123),
+            'password' => '123456789',
             'remember_token' => Str::random(10)
         ]);
     }

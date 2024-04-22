@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthUserApiController;
 use App\Http\Controllers\userController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,5 @@ Route::group(['prefix' => 'users', 'controller' => userController::class], funct
     Route::put('/{user}','update');
     Route::delete('/{user}','destroy');
 });
+
+Route::post('/login',[AuthUserApiController::class, 'login']);
