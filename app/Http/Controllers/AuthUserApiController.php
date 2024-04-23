@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\Auth\AuthRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Auth\AuthRequest;
 
 class AuthUserApiController extends Controller
 {
@@ -18,9 +19,23 @@ class AuthUserApiController extends Controller
             return response()->json($this->handlerMessage(401), 401);
         }
         $token = $user->createToken('auth_token')->plainTextToken;
-        $data =  ['access_token' => $token, 'user' => $user];
+        $data =  ['access_token' => $token];
         return response()->json($this->handlerMessage(200, $data), 200);
     }
+
+    public function logout()
+    {
+        // se utiliza el metodo Auth por que ya esta autenticado
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user->tokens()->delete();
+        return response()->json([], 204);
+    }
+    public function profile()
+    {
+        return response()->json(['auth_user'=>Auth::user()], 200);
+    }
+
 
     private function handlerMessage($code, $data = null)
     {
