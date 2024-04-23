@@ -21,7 +21,7 @@ class UserRequest extends FormRequest
                 'password' => ['confirmed','string','min:8'],
         ];
 
-        if($this->method() === 'POST'){
+        if($this->method() == 'POST'){
             //crear
             array_push($rules['number_id'], 'unique:users,number_id');
             array_push($rules['email'], 'unique:users,email');

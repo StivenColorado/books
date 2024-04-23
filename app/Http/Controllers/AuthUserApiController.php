@@ -18,7 +18,7 @@ class AuthUserApiController extends Controller
             return response()->json($this->handlerMessage(401), 401);
         }
         $token = $user->createToken('auth_token')->plainTextToken;
-        $data =  ['access_token' => $token];
+        $data =  ['access_token' => $token, 'user' => $user];
         return response()->json($this->handlerMessage(200, $data), 200);
     }
 
