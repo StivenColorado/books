@@ -38,8 +38,8 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @role('admin')
-                                <a href="{{ route('users') }}" class="dropdown-item">Usuarios</a>
-                                <a href="{{ route('books') }}" class="dropdown-item">Libros</a>
+                                {{-- <a href="{{ route('users') }}" class="dropdown-item">Usuarios</a>
+                                <a href="{{ route('books') }}" class="dropdown-item">Libros</a> --}}
                             @endrole
                             {{-- logout --}}
 
