@@ -32,7 +32,7 @@ class User extends Authenticatable
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime:Y-m-d',
-        'is_enable' => 'boolean',
+        'is_enable' => 'boolean'
     ];
     /*
         accesores (get)
@@ -48,9 +48,9 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function setRememberTokenAttribute($value)
+    public function setRememberTokenAttribute()
     {
-        $this->attributes['password'] = Str::random(10);
+        $this->attributes['remember_token'] = Str::random(30);
     }
     //relacionamiento de llaves foreaneas a lends
     public function customerLends()
