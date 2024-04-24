@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Biblioteca' }}</title>
+    <title>{{ env('APP_NAME') }} | {{ $title ?? 'Libros' }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -25,7 +25,7 @@
     <x-menu />
     <main id="app">
         <div class="container mt-4">
-            {{-- <x-alerts /> --}}
+            <x-alerts />
         </div>
         {{ $slot }}
     </main>

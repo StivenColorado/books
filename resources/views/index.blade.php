@@ -1,5 +1,5 @@
 <x-app title="Biblioteca central | Home">
-    <section class="my-3">
+    <section class="my-3 col-12 text-center">
         <h1>listado de libros</h1>
     </section>
 
@@ -15,7 +15,7 @@
                     <p>{{ $book->description }}</p>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-outline-success w-100">
                         solicitar
                     </button>
                 </div>
