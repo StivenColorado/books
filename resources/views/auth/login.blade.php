@@ -1,4 +1,4 @@
-<x-app title="Biblioteca | Login">
+<x-app title="Inicio de sesion">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
