@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Book;
+use App\Models\File;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookFactory extends Factory
@@ -26,5 +27,12 @@ class BookFactory extends Factory
             'description' => $this->faker->paragraph(),
 
         ];
+    }
+    public function configure(){
+        // despues de crear un autor, traerlo de la db y agregarle 8 libros a dicho autor
+        return $this->afterCreating(function (Book $book){
+            $file = new File(['route'=> '/storage/images/books/default.png']);
+            $book->file()->save($file);
+        });
     }
 }

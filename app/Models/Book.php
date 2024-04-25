@@ -11,33 +11,38 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
-	use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-	protected $fillable = [
-		'category_id',
-		'author_id',
-		'title',
-		'stock',
-		'description',
-	];
+    protected $fillable = [
+        'category_id',
+        'author_id',
+        'title',
+        'stock',
+        'description',
+    ];
 
 
 
-	/*
+    /*
 		Book::with('category','author')->get();
 	*/
-	public function category()
-	{
-		return $this->belongsTo(Category::class, 'category_id', 'id');
-	}
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 
-	public function author()
-	{
-		return $this->belongsTo(Author::class, 'author_id', 'id');
-	}
+    public function author()
+    {
+        return $this->belongsTo(Author::class, 'author_id', 'id');
+    }
 
-	public function lends()
-	{
-		return $this->hasMany(Lend::class, 'book_id', 'id');
-	}
+    public function lends()
+    {
+        return $this->hasMany(Lend::class, 'book_id', 'id');
+    }
+
+    public function file()
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 }
