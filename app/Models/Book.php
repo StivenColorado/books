@@ -27,12 +27,11 @@ class Book extends Model
     public function formatDescription(): Attribute
     {
         return Attribute::make(
-            get: function ($value,$attributes){
+            get: function ($value, $attributes) {
                 return Str::limit($attributes['description'], 80, '...');
-            }
-            ,
+            },
             // set:fn ($value) => Str::upper($value)
-         );
+        );
     }
 
     /*

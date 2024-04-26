@@ -30,7 +30,7 @@
                                     <th scope="row">{{ $user->email }}</th>
                                     <th scope="row">
                                         @foreach ($user->roles as $role)
-                                            {{ $role->name }},
+                                            {{ $role->name }}
                                         @endforeach
                                     </th>
 
