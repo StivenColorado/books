@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -8,27 +8,28 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- Title --}}
     <title>{{ env('APP_NAME') }} | {{ $title ?? 'Libros' }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body class="bg-">
-    {{-- @include('components.menu') --}}
 
-    {{-- menu --}}
+    {{-- Menu --}}
     <x-menu />
+
+    {{-- Content --}}
     <main id="app">
         <div class="container mt-4">
             <x-alerts />
         </div>
+
         {{ $slot }}
     </main>
+
+    {{ $scripts ?? '' }}
 </body>
 
 </html>

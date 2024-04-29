@@ -1,23 +1,30 @@
-<x-app title="Biblioteca central | Home">
-    <section class="my-3 col-12 text-center">
-        <h1>listado de libros</h1>
+<x-app title="Inicio">
+    <section class="my-3 d-flex justify-content-center">
+        <h1>Listado de Libros</h1>
     </section>
 
     <section class="d-flex flex-wrap justify-content-center">
         @foreach ($books as $book)
             <div class="card mx-2 my-3 card_size">
-                <div class="card-header">
-                    <h2 class="h5">
-                        {{ $book->title }}
-                    </h2>
-                </div>
+                <img src="{{ $book->file->route }}" class="card-img-top" alt="Portada Libro">
                 <div class="card-body">
-                    <p>{{ $book->description }}</p>
+                    <h5 class="card-title">{{ $book->title }}</h5>
+                    <p class="card-text">{{ $book->format_description }}</p>
+                    <div class="d-flex flex-wrap">
+                        <span class="w-100">
+                            <strong>Autor: </strong> {{ $book->author->name }}
+                        </span>
+                        <span class="mt-2">
+                            <strong>Categoria: </strong> {{ $book->category->name }}
+                        </span>
+                    </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-outline-success w-100">
-                        solicitar
-                    </button>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-success" type="button">
+                            Solicitar
+                        </button>
+                    </div>
                 </div>
             </div>
         @endforeach
