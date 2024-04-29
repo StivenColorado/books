@@ -1,9 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header d-flex justify-content-end">
-      <button class="btn btn-primary" @click="createCategory">
-        Crear categoria
-      </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Crear categoria</button>
     </div>
     <div class="card-body">
       <div class="table-responsive my-4 mx-2">
@@ -19,31 +17,79 @@
       </div>
     </div>
   </div>
-  <div v-if="load_modal">
-    <category-modal :category_data="category" />
+  <div>
+    <!-- modal hp -->
+    <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label"
+                >Recipient:</label
+              >
+              <input type="text" class="form-control" id="recipient-name" />
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Send message</button>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
+import CategoryModal from './CategoryModal.vue';
+
 import {
   successMessage,
   handlerErrors,
   deleteMessage,
 } from "../../helpers/Alerts.js";
 import HandlerModal from "../../helpers/HandlerModal.js";
-import CategoryModal from "./CategoryModal.vue";
 
 export default {
+    components: {
+    CategoryModal
+  },
   setup(/* props */) {
-    // const load_modal = ref(false);
     const table = ref(null);
+    const { openModal, load_modal, closeModal} = HandlerModal();
     const category = ref(null);
-    const { openModal, closeModal, load_modal } = HandlerModal();
-
+    const showModal = ref(false)
     onMounted(() => mounteTable());
 
-    const index = () => mounteTable()
+    const index = () => mounteTable();
 
     const mounteTable = () => {
       table.value = $("#category_table").DataTable({
@@ -78,9 +124,9 @@ export default {
       });
     };
 
-    const createCategory = async () => {
-        category.value = null
-        await openModal('category_modal')
+    const createCategory = () => {
+      category.value = null; // Asegúrate de limpiar los datos de la categoría
+      load_modal.value = true; // Abre el modal
     };
 
     const editCategory = async (id) => {
@@ -98,16 +144,16 @@ export default {
       try {
         await axios.delete(`/categories/${id}`);
         await successMessage({ is_delete: true });
-        reloadState()
+        reloadState();
       } catch (error) {
         await handlerErrors(error);
       }
     };
-    const reloadState = (event) => {
-        table.value.destroy()
-        index()
-    }
 
+    const reloadState = (event) => {
+      table.value.destroy();
+      index();
+    };
 
     const handleAction = (event) => {
       const button = event.target;
@@ -119,7 +165,12 @@ export default {
       }
     };
 
-    return { handleAction, createCategory, load_modal };
+    return {
+      handleAction,
+      createCategory,
+      load_modal,
+      category
+    };
   },
 };
 </script>

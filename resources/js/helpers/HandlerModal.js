@@ -13,9 +13,10 @@ export default function handlerModal() {
 
   const openModal = async (modal_id) => {
     await moutedModal();
-    modal.value = new bootstrap.Modal("#${modal_id}");
+    modal.value = new bootstrap.Modal(`#${modal_id}`);
     modal.value.show();
   };
+
   const closeModal = async () => {
     modal.value.hide();
     await moutedModal(false);
