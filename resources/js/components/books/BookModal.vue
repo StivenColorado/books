@@ -110,10 +110,11 @@
 import { Field, Form } from 'vee-validate'
 import * as yup from 'yup';
 import { successMessage, handlerErrors } from '../../helpers/Alerts'
+import backendError from "../Components/BackendError.vue";
 
 export default {
 	props: ['authors_data', 'book_data'],
-	components: { Field, Form },
+	components: { Field, Form , backendError},
 	watch: {
 		book_data(new_value) {
 			this.book = { ...new_value }
@@ -201,9 +202,7 @@ export default {
 			this.image_preview = '/storage/images/books/default.png'
 			document.getElementById('file').value = ''
 			setTimeout(() => this.$refs.form.resetForm(), 100);
-
 		}
-
 	}
 }
 </script>
