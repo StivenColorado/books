@@ -1,11 +1,19 @@
 <template>
   <div class="card">
     <div class="card-header d-flex justify-content-end">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Crear categoria</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        data-bs-whatever="@getbootstrap"
+      >
+        Crear categoria
+      </button>
     </div>
     <div class="card-body">
       <div class="table-responsive my-4 mx-2">
-        <table class="table table-bordered" id="category_table">
+        <table class="col-12" id="category_table">
           <thead>
             <tr>
               <th>Nombre</th>
@@ -18,58 +26,56 @@
     </div>
   </div>
   <div>
-    <!-- modal hp -->
+    <!-- modal -->
     <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label"
-                >Recipient:</label
-              >
-              <input type="text" class="form-control" id="recipient-name" />
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Send message</button>
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crear categoria</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form @submit="createCategory">
+              <div class="mb-3">
+                <label for="name" class="col-form-label"
+                  >Nombre de categoria</label
+                >
+                <input type="text" class="form-control" name="name" id="name" />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Crear categoria
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
-import CategoryModal from './CategoryModal.vue';
+import CategoryModal from "./CategoryModal.vue";
 
 import {
   successMessage,
@@ -79,14 +85,14 @@ import {
 import HandlerModal from "../../helpers/HandlerModal.js";
 
 export default {
-    components: {
-    CategoryModal
+  components: {
+    CategoryModal,
   },
   setup(/* props */) {
     const table = ref(null);
-    const { openModal, load_modal, closeModal} = HandlerModal();
+    const { openModal, load_modal, closeModal } = HandlerModal();
     const category = ref(null);
-    const showModal = ref(false)
+    const showModal = ref(false);
     onMounted(() => mounteTable());
 
     const index = () => mounteTable();
@@ -122,11 +128,6 @@ export default {
           },
         ],
       });
-    };
-
-    const createCategory = () => {
-      category.value = null; // Asegúrate de limpiar los datos de la categoría
-      load_modal.value = true; // Abre el modal
     };
 
     const editCategory = async (id) => {
@@ -169,7 +170,7 @@ export default {
       handleAction,
       createCategory,
       load_modal,
-      category
+      category,
     };
   },
 };

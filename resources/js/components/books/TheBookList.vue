@@ -6,8 +6,8 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive my-4 mx-2">
-					<table class="table table-bordered" id="book_table">
-						<thead>
+					<table class="col-12" id="book_table">
+						<thead style="height: 3em;">
 							<tr>
 								<th>Titulo</th>
 								<th>Autor</th>
@@ -17,7 +17,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="(book, index) in books" :key="index">
+							<tr v-for="(book, index) in books" :key="index" class="bg-custom-row" style="height: 3em;">
 								<td>{{ book.title }}</td>
 								<td>{{ book.author.name }}</td>
 								<td>{{ book.category.name }}</td>

@@ -20,7 +20,13 @@
 .card_size {
 	width: 18rem;
 }
-
+.bg-custom-table{
+    background-color: rgba(135, 161, 231, 0.711) !important;
+}
+.bg-custom-row:nth-child(2n+1){
+    background-color: rgba(231, 231, 233, 0.575);
+    border-collapse: separate; /* Add this line */
+}
 body {
 	background-color: rgb(233, 233, 233) !important;
 }

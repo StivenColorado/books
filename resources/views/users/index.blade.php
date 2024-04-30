@@ -10,9 +10,9 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive my-4 mx-2">
-                    <table class="table table-bordered" id="user_table">
+                    <table class="col-12" id="user_table">
                         <thead>
-                            <tr>
+                            <tr style="height: 3em;">
                                 <th scope="col">Cedula</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellido</th>
@@ -23,14 +23,14 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                                <tr>
+                                <tr class="bg-custom-row" style="height: 3em;">
                                     <th scope="row">{{ $user->number_id }}</th>
                                     <th scope="row">{{ $user->name }}</th>
                                     <th scope="row">{{ $user->last_name }}</th>
                                     <th scope="row">{{ $user->email }}</th>
                                     <th scope="row">
                                         @foreach ($user->roles as $role)
-                                            {{ $role->name }},
+                                            {{ $role->name }}
                                         @endforeach
                                     </th>
 
