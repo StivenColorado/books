@@ -5,8 +5,8 @@
 
     <section class="d-flex flex-wrap justify-content-center">
         @foreach ($books as $book)
-            <div class="card mx-2 my-3 card_size">
-                <img src="{{ $book->file->route }}" class="card-img-top" alt="Portada Libro">
+            <div class="card mx-2 my-3 card_size bg-dark text-white">
+                <img src="{{ $book->file->route }}" class="card-img-top position-relative w-50 left-10" style="left:25%" alt="Portada Libro">
                 <div class="card-body">
                     <h5 class="card-title">{{ $book->title }}</h5>
                     <p class="card-text">{{ $book->format_description }}</p>

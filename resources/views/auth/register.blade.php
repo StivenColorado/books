@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card bg-table">
                     <div class="card-header">Registro</div>
 
                     <div class="card-body">
@@ -16,7 +16,7 @@
 
                                 <div class="col-md-6">
                                     <input id="number_id" type="text"
-                                        class="form-control @error('number_id') is-invalid @enderror" name="number_id"
+                                        class="form-control bg-dark text-white @error('number_id') is-invalid @enderror" name="number_id"
                                         value="{{ old('number_id') }}" required autocomplete="number_id" autofocus>
 
                                     @error('number_id')
@@ -34,7 +34,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        class="form-control bg-dark text-white @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
@@ -52,7 +52,7 @@
 
                                 <div class="col-md-6">
                                     <input id="last_name" type="text"
-                                        class="form-control @error('last_name') is-invalid @enderror" name="last_name"
+                                        class="form-control bg-dark text-white @error('last_name') is-invalid @enderror" name="last_name"
                                         value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
 
                                     @error('last_name')
@@ -70,7 +70,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        class="form-control bg-dark text-white @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
@@ -88,7 +88,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        class="form-control bg-dark text-white @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
 
                                     @error('password')
@@ -105,7 +105,7 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
+                                    <input id="password-confirm" type="password" class="form-control bg-dark text-white"
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>

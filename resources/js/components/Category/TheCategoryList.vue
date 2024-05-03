@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
+  <div class="card bg-table">
     <div class="card-header d-flex justify-content-end">
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn btn-primary btn-custom"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         data-bs-whatever="@getbootstrap"
@@ -35,7 +35,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-dark text-white">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Crear categoria</h5>
             <button
@@ -51,7 +51,7 @@
                 <label for="name" class="col-form-label"
                   >Nombre de categoria</label
                 >
-                <input type="text" class="form-control" name="name" id="name" />
+                <input type="text" class="form-control bg-dark text-white" name="name" id="name" />
               </div>
               <div class="modal-footer">
                 <button
@@ -168,7 +168,7 @@ export default {
 
     return {
       handleAction,
-      createCategory,
+    //   createCategory,
       load_modal,
       category,
     };
