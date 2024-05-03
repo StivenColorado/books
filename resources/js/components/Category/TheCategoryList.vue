@@ -37,7 +37,7 @@
       <div class="modal-dialog">
         <div class="modal-content bg-dark text-white">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear categoria</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Crear categoría</h5>
             <button
               type="button"
               class="btn-close"
@@ -46,12 +46,23 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form @submit="createCategory">
+            <form @submit.prevent="createCategory" method="POST">
               <div class="mb-3">
                 <label for="name" class="col-form-label"
-                  >Nombre de categoria</label
+                  >Nombre de categoría</label
                 >
-                <input type="text" class="form-control bg-dark text-white" name="name" id="name" />
+                <input
+                  type="text"
+                  class="form-control bg-dark text-white"
+                  v-model="newCategory.name"
+                  id="name"
+                />
+                <div
+                  v-if="newCategory && errors && errors.name"
+                  class="alert alert-danger"
+                >
+                  {{ errors.name[0] ?? "" }}
+                </div>
               </div>
               <div class="modal-footer">
                 <button
@@ -59,10 +70,10 @@
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
-                  Close
+                  Cerrar
                 </button>
-                <button type="button" class="btn btn-primary">
-                  Crear categoria
+                <button type="submit" class="btn btn-primary">
+                  Crear categoría
                 </button>
               </div>
             </form>
@@ -75,6 +86,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
+import axios from "axios";
 import CategoryModal from "./CategoryModal.vue";
 
 import {
@@ -89,12 +101,43 @@ export default {
     CategoryModal,
   },
   setup(/* props */) {
-    const table = ref(null);
+    // IMPORTACIONES ----------------------
     const { openModal, load_modal, closeModal } = HandlerModal();
     const category = ref(null);
     const showModal = ref(false);
-    onMounted(() => mounteTable());
 
+    const table = ref(null);
+    const errors = ref(null);
+    const newCategory = ref({
+      name: "",
+    });
+
+    // HASTA AQUI IMPORTACIONES------------
+    const createCategory = async () => {
+      try {
+        const response = await axios.post(
+          "/categories",
+          newCategory.value
+        );
+        console.log(response.data); // Manejar la respuesta exitosa como desees
+        // Limpiar el formulario después de la creación exitosa
+        newCategory.value.name = "";
+        errors.value = null;
+        // Cerrar el modal después de la creación exitosa
+        // window.location.reload();
+        $("#exampleModal").modal("hide");
+
+      } catch (error) {
+        if (error.response && error.response.status === 422) {
+          errors.value = error.response.data.errors;
+        } else {
+          console.error(error);
+        }
+      }
+    };
+
+    // METODOS ----------------------------
+    onMounted(() => mounteTable());
     const index = () => mounteTable();
 
     const mounteTable = () => {
@@ -168,9 +211,11 @@ export default {
 
     return {
       handleAction,
-    //   createCategory,
+      createCategory,
       load_modal,
       category,
+      errors,
+      newCategory
     };
   },
 };
