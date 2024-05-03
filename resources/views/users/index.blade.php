@@ -4,9 +4,12 @@
             <h1>Listado de usuarios</h1>
         </div>
 
-        <div class="card">
+        <div class="card bg-table text-white">
             <div class="card-header d-flex justify-content-end">
-                <a href="{{ route('users.create') }}" class="btn btn-primary">Crear usuario</a>
+                <a href="{{ route('users.create') }}" class="btn btn-primary btn-custom">
+                    <x-icons.adduser />
+                    Crear usuario
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive my-4 mx-2">
