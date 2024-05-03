@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">{{ env('APP_NAME') }}</a>
 
@@ -8,14 +8,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse navbar-dark" id="navbarSupportedContent" >
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
 
             </ul>
-
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto ">
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -38,31 +37,35 @@
                             {{ Auth::user()->full_name }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
 
                             @role('admin')
                                 {{-- User --}}
-                                <a class="dropdown-item" href="{{ route('users.index') }}">
+                                <a class="dropdown-item text-white" href="{{ route('users.index') }}">
+                                    <x-icons.profileIcon/>
                                     Usuarios
                                 </a>
                             @endrole
                             @role('admin|librarian')
                                 {{-- Book --}}
-                                <a class="dropdown-item" href="{{ route('books.index') }}">
+                                <a class="dropdown-item text-white" href="{{ route('books.index') }}">
+                                    <x-icons.saveIcon/>
                                     Libros
                                 </a>
                             @endrole
                             @can('categories.index')
                                 {{-- Category --}}
-                                <a class="dropdown-item" href="{{ route('categories.index') }}">
+                                <a class="dropdown-item text-white" href="{{ route('categories.index') }}">
+                                  <x-icons.categoryIcon/>
                                     Categorias
                                 </a>
                             @endcan
 
 
                             {{-- Logout --}}
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item text-white" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                               <x-icons.exitIcon/>
                                 Cerrar sesión
                             </a>
 
